@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<center>
+<body class="orange hid_6">
+
+
+
+<div id="content">
+	<h1>September 1, 2016</h1>
+	<h3>
+	    Keep clam and carry on
+    </h3>
+
+<script language="javascript">
+function CloseR(Rval, IEASeries){
+    if(Rval <= 0){
+        return 0;
+    }
+    Expo = Math.floor(Math.log(Rval) / Math.log(10));
+    Mant = Rval / Math.pow(10,Expo);
+    x = Math.floor(IEASeries * Math.log(Mant) / Math.log(10));
+    min_dist = 1000;
+    for (i = (x - 1) ; i <= (x + 1); i++ )
+    {
+        y = (Math.pow(10, (i / IEASeries))).toFixed(2);
+        dist = Math.abs(Mant - y);
+        if(dist < min_dist){
+            min_dist = dist;
+            closest = i;
+        }
+    }
+    x = (Math.pow(10, (closest / IEASeries))).toFixed(2);
+    y = Math.pow(10, Expo);
+    return x*y;
+}
+
+function E_6(Val){
+    if(Val <= 0){
+        return 0;
+    }
+    Clist = "1,1.5,2.2,3.3,4.7,6.8,10";
+    Vals = Clist.split(",") //convert to zero based array;
+    n = Vals.length
+    //find mantissa &#038; exponent of Val;
+    Expo = Math.floor(Math.log(Val) / Math.log(10));
+    Mant = Val / Math.pow(10,Expo);
+    min_dist = 1000;
+    for (i = 0; i<=  n; i++){
+        dist = Math.abs(Mant - Vals[i]);
+        if(dist < min_dist){
+            min_dist = dist;
+            closest = i;
+        }
+    }
+    return Vals[closest] * Math.pow(10,Expo);
+}
+function E_12(Val){
+    if(Val <= 0){
+        return 0;
+    }
+    Clist = "1,1.2,1.5,1.8,2.2,2.7,3.3,3.9,4.7,5.6,6.8,8.2,10";
+    Vals = Clist.split(",") //convert to zero based array;
+    n = Vals.length
+    //find mantissa &#038; exponent of Val;
+    Expo = Math.floor(Math.log(Val) / Math.log(10));
+    Mant = Val / Math.pow(10,Expo);
+    min_dist = 1000;
+    for (i = 0; i<=  n; i++){
+        dist = Math.abs(Mant - Vals[i]);
+        if(dist < min_dist){
+            min_dist = dist;
+            closest = i;
+        }
+    }
+    return Vals[closest] * Math.pow(10,Expo);
+}
+
+function E_24(Val){
+    if(Val <= 0){
+        return 0;
+    }
+    Clist = "1,1.1,1.2,1.3,1.5,1.6,1.8,2.0,2.2,2.4,2.7,3.0,3.3,3.6,3.9,4.3,4.7,5.1,5.6,6.2,6.8,7.5,8.2,9.1,10" //2% &#038;& 5% vals;
+    Vals = Clist.split(",") //convert to zero based array;
+    n = Vals.length
+    //find mantissa &#038; exponent of Val;
+    Expo = Math.floor(Math.log(Val) / Math.log(10));
+    Mant = Val / Math.pow(10,Expo);
+    min_dist = 1000;
+    for (i = 0; i<=  n; i++){
+        dist = Math.abs(Mant - Vals[i]);
+        if(dist < min_dist){
+            min_dist = dist;
+            closest = i;
+        }
+    }
+    return Vals[closest] * Math.pow(10,Expo);
+}
+
+function E_48(Val){
+    return CloseR(Val, 48).toPrecision(3);
+}
+
+function E_96(Val){
+    return CloseR(Val, 96).toPrecision(3);
+}
+
+function E_192(Val){
+    return CloseR(Val, 192).toPrecision(3);
+}
+
+function Significant(x, d){
+    //rounds x to d significant digits;
+    if(x == 0){
+        return 0;
+    }
+    y = Math.log(Math.abs(x)) / Math.log(10);
+    if(Math.abs(Math.floor(y) - y) < 0.000000000000001){
+        y = Math.floor(y);
+    }
+    e = Math.floor(y);
+    m = x / Math.pow(10, e);
+    m = (m).toFixed(d - 1);
+    return m * Math.pow(10, e);
+}
+
+function Find(){
+ v=document.getElementById("Text1").value;
+ v6=E_6(v).toPrecision(3);
+ v12=E_12(v).toPrecision(3);
+ v24=E_24(v).toPrecision(3);
+ v48=E_48(v);
+ v96=E_96(v);
+ v192=E_192(v);
+ /*
+ */
+ e6=(100*(v6-v)/v).toPrecision(3)  + "%";
+ e12=(100*(v12-v)/v).toPrecision(3)  + "%";
+ e24=(100*(v24-v)/v).toPrecision(3)  + "%";
+ e48=(100*(v48-v)/v).toPrecision(3)  + "%";
+ e96=(100*(v96-v)/v).toPrecision(3)  + "%";
+ e192=(100*(v192-v)/v).toPrecision(3)  + "%";
+ document.getElementById("Text2").value=v6;
+ document.getElementById("Text3").value=v12;
+ document.getElementById("Text4").value=v24;
+ document.getElementById("Text5").value=v48;
+ document.getElementById("Text6").value=v96;
+ document.getElementById("Text7").value=v192;
+ /*
+ */
+ document.getElementById("Text8").value=e6;
+ document.getElementById("Text9").value=e12;
+ document.getElementById("Text10").value=e24;
+ document.getElementById("Text11").value=e48;
+ document.getElementById("Text12").value=e96;
+ document.getElementById("Text13").value=e192;
+ /*
+ */
+}
+
+</script>
+	<TABLE id="Table2" cellSpacing="1" cellPadding="1" width="300" border="1" bgcolor="#FFFFCC">
+		<TR>
+			<TD>
+				<STRONG>Desired Value:</STRONG> <INPUT id="Text1" type="text" name="Text1" size="8" onkeyup="Find()">
+			</TD>
+		</TR>
+	</TABLE>
+</P>
+	<h5>Please push "Enter"  if it doesn't respond</h5>
+	<TABLE id="Table1" cellSpacing="1" cellPadding="1" width="300" border="1" bgcolor="#CCFFCC">
+		<TR>
+			<TD align="center">
+				<STRONG>IEA Series</STRONG>/
+			</TD>
+			<TD align="center">
+				<STRONG>Closest Value</STRONG>
+			</TD>
+			<TD align="center">
+				<STRONG>Error</STRONG>
+			</TD>
+		</TR>
+		<TR>
+			<TD align="center">
+				E6
+			</TD>
+			<TD align="center">
+				<INPUT id="Text2" type="text" name="Text2" size="8">
+			</TD>
+			<TD align="center">
+				<INPUT id="Text8" type="text" name="Text8" size="8">
+			</TD>
+		</TR>
+		<TR>
+			<TD align="center">
+				E12
+			</TD>
+			<TD align="center">
+				<INPUT id="Text3" type="text" name="Text3" size="8">
+			</TD>
+			<TD align="center">
+				<INPUT id="Text9" type="text" name="Text9" size="8">
+			</TD>
+		</TR>
+		<TR>
+			<TD align="center">
+				E24
+			</TD>
+			<TD align="center">
+				<INPUT id="Text4" type="text" name="Text4" size="8">
+			</TD>
+			<TD align="center">
+				<INPUT id="Text10" type="text" name="Text10" size="8">
+			</TD>
+		</TR>
+		<TR>
+			<TD align="center">
+				E48
+			</TD>
+			<TD align="center">
+				<INPUT id="Text5" type="text" name="Text5" size="8">
+			</TD>
+			<TD align="center">
+				<INPUT id="Text11" type="text" name="Text11" size="8">
+			</TD>
+		</TR>
+		<TR>
+			<TD align="center">
+				E96
+			</TD>
+			<TD align="center">
+				<INPUT id="Text6" type="text" name="Text6" size="8">
+			</TD>
+			<TD align="center">
+				<INPUT id="Text12" type="text" name="Text12" size="8">
+			</TD>
+		</TR>
+		<TR>
+			<TD align="center">
+				E192
+			</TD>
+			<TD align="center">
+				<INPUT id="Text7" type="text" name="Text7" size="8">
+			</TD>
+			<TD align="center">
+				<INPUT id="Text13" type="text" name="Text13" size="8">
+			</TD>
+		</TR>
+	</TABLE>
+</P>
+<P>Which IEA series applies to the various component types?</P>
+
+	<p>
+	E6: most capacitors, some inductors
+	<p>
+	E12: some capacitors, 10% resistors
+	<p>
+	E24: 5% resistors   
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<p>
+	E48: 2% resistors
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<p>
+	E96: 1% resistors
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<p>
+	E192: 0.5%, 0.25%, 0.1% resistors
+	&nbsp;
+	</p>	
+</div>
+<p>with famliy @home <p>
+</body>
+</center>
